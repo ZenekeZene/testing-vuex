@@ -7,11 +7,12 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    count: 0,
+    count: 3,
   },
 })
 
 new Vue({
   render: h => h(App),
   store,
+
 }).$mount("#app");

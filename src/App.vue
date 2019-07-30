@@ -2,18 +2,27 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
 	{{ count }}
+	{{ countAlias }}
+	{{ countPlusLocalState }}
   </div>
 </template>
 
 <script>
-
+import { mapState } from 'vuex';
 export default {
   name: "app",
-  computed: {
-	  count() {
-		  return this.$store.state.count;
+  data() {
+	  return {
+		  localCount: 4 
 	  }
   },
+  computed: mapState({
+	  count: state => state.count,
+	  countAlias: 'count',
+	  countPlusLocalState (state) {
+		return state.count + this.localCount;
+	  }
+  }), 
 
 };
 </script>
