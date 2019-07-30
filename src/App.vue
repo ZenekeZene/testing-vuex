@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    count: {{ count }}
-    doneTodosCount: {{ doneTodosCount }}
+    <p>count: {{ count }}</p>
+    <p>doneTodosCount: {{ doneTodosCount }}</p>
   </div>
 </template>
 
@@ -12,21 +12,24 @@ export default {
   name: "app",
   data() {
     return {
-      localCount: 4,
+      localCount: 4
     };
   },
   computed: {
-    ...mapState([ // (1)
-    'count'
+    ...mapState([
+      // (1)
+      "count"
     ]),
-    ...mapGetters([ // (2)
-      'doneTodos',
-      'doneTodosCount',
-      'getTodoById',
+    ...mapGetters([
+      // (2)
+      "doneTodos",
+      "doneTodosCount",
+      "getTodoById"
     ]),
-    localComputed() { // (3)
-        /// ...
-    },
+    localComputed() {
+      // (3)
+      return true;
+    }
     // (4)
     // ...mapGetters({
     //    doneCount: 'doneTodosCount',
@@ -56,7 +59,6 @@ export default {
 
     (4) If you want to map a getter to a different name, use an object. (Alias)
     */
-
 };
 </script>
 

@@ -26,13 +26,12 @@ const store = new Vuex.Store({
       return state.todos.find(todo => todo.id === id);
     }
     // (1) Property-Style Access : Getters will also receive other getters as the 2nd argument:
-    // (2) Method-Style Access: 
+    // (2) Method-Style Access:
     // You can also pass arguments to getters by returning a function. This is particularly useful when you want to query an array in the store:
   }
 });
 
 new Vue({
   render: h => h(App),
-  store,
-
+  store
 }).$mount("#app");
