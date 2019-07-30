@@ -2,8 +2,6 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
 	{{ count }}
-	{{ countAlias }}
-	{{ countPlusLocalState }}
   </div>
 </template>
 
@@ -16,14 +14,16 @@ export default {
 		  localCount: 4 
 	  }
   },
-  computed: mapState({
-	  count: state => state.count,
-	  countAlias: 'count',
-	  countPlusLocalState (state) {
+  computed: mapState([
+	  'count'
+  ]), 
+	/*
+	count: state => state.count,
+	countAlias: 'count',
+	countPlusLocalState (state) {
 		return state.count + this.localCount;
-	  }
-  }), 
-
+	}
+	*/
 };
 </script>
 
