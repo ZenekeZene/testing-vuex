@@ -2,7 +2,6 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
     <p>count: {{ count }}</p>
-    <p>doneTodosCount: {{ doneTodosCount }}</p>
     <button @click='increment'>+</button>
     <button @click="incrementBy({ 'amount': 4 })">+4</button>
   </div>
@@ -18,25 +17,18 @@ export default {
     };
   },
   computed: {
-    ...mapState([
-      "count"
-    ]),
-    ...mapGetters([
-      "doneTodos",
-      "doneTodosCount",
-      "getTodoById"
-    ]),
-    localComputed() {
-      return true;
-    }
+    ...mapState([ 'count' ]),
   },
-  methods:{
-    ...mapMutations([
-        'increment',
-    ]),
-    ...mapMutations({
-        add: 'incrementBy', // Alias
-    }),
+  methods: {
+    increment() {
+        this.$store.dispatch('incrementAsync');
+    },
+    decrement() {
+        this.$store.commit('decrement');
+    },
+    testAction() {
+        this.$store.dispatch('actionA');
+    },
   },
 };
 
