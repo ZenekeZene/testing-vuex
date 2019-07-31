@@ -3,11 +3,13 @@
     <img alt="Vue logo" src="./assets/logo.png" />
     <p>count: {{ count }}</p>
     <p>doneTodosCount: {{ doneTodosCount }}</p>
+    <button @click='increment'>+</button>
+    <button @click="incrementBy({ 'amount': 4 })">+4</button>
   </div>
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapState, mapGetters, mapMutations } from "vuex";
 export default {
   name: "app",
   data() {
@@ -17,49 +19,29 @@ export default {
   },
   computed: {
     ...mapState([
-      // (1)
       "count"
     ]),
     ...mapGetters([
-      // (2)
       "doneTodos",
       "doneTodosCount",
       "getTodoById"
     ]),
     localComputed() {
-      // (3)
       return true;
     }
-    // (4)
-    // ...mapGetters({
-    //    doneCount: 'doneTodosCount',
-    // })
-  }
-  /*
-    (1) Instead of:
-    count: state => state.count,
-    countAlias: 'count',
-    countPlusLocalState (state) {
-        return state.count + this.localCount;
-    }
-
-    (2) Instead of:
-    doneTodos() {
-        return state.getters.doneTodos;
-    },
-    doneTodosCount() {
-        return state.getters.doneTodosCount;
-    },
-    doneTodoById() {
-        return state.getters.doneTodoById;
-    },
-
-    (3) We can combine mapState, mapGetters helpers and local computed properties
-    // with object spread operator.
-
-    (4) If you want to map a getter to a different name, use an object. (Alias)
-    */
+  },
+  methods:{
+    ...mapMutations([
+        'increment',
+    ]),
+    ...mapMutations({
+        add: 'incrementBy', // Alias
+    }),
+  },
 };
+
+// Mutations must be synchronous.
+// Reason https://vuex.vuejs.org/guide/mutations.html#on-to-actions: 
 </script>
 
 <style lang="scss">

@@ -13,6 +13,14 @@ const store = new Vuex.Store({
       { id: 2, text: "...", done: false }
     ]
   },
+  mutations: {
+    increment(state) {
+      state.count++;
+    },
+    incrementBy(state, payload) {
+      state.count += payload.amount;
+    }
+  },
   getters: {
     doneTodos: state => {
       return state.todos.filter(todo => todo.done);
